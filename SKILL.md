@@ -1,9 +1,9 @@
 ---
 name: office-helper-zx
 displayName: 办公效率工具箱
-version: 1.0.1
-summary: 10个办公工具：批量重命名/PDF合并拆分/Excel-CSV互转/会议纪要/排班表/文件整理/文本替换/密码生成
-tags: [office, productivity, pdf, excel, automation]
+version: 2.0.0
+summary: 10个高级算法办公工具：TF-IDF文件分类/PDF结构分析/三重文档相似度/智能批量重命名/Excel多表合并/会议纪要解析/区间树排班冲突/Myers文本差异/MD5文件查重/TextRank文档摘要
+tags: [office, productivity, tfidf, textrank, myers-diff, interval-tree, automation]
 license: MIT
 ---
 
@@ -11,54 +11,49 @@ license: MIT
 
 ## 简介
 
-office-helper 是一套包含10个常用办公自动化工具的 Python 技能包，旨在提升日常办公效率。涵盖文件管理、PDF处理、表格转换、文档生成、文件整理和文本处理等场景。
+office-helper 是一套包含10个高级算法驱动的办公自动化工具的 Python 技能包。所有功能仅使用Python标准库实现，无需安装任何外部依赖。涵盖文件分类、PDF分析、文档对比、批量重命名、Excel合并、会议解析、排班检测、文本差异、文件查重、文档摘要等场景。
 
 ## 功能列表
 
-| # | 函数名 | 功能描述 |
-|---|--------|----------|
-| 1 | `batch_rename_files` | 批量重命名文件（正则匹配） |
-| 2 | `merge_pdf_files` | 合并多个PDF文件为一个 |
-| 3 | `split_pdf_file` | 按页码范围拆分PDF文件 |
-| 4 | `excel_to_csv` | Excel文件转换为CSV（支持多工作表） |
-| 5 | `csv_to_excel` | CSV文件转换为Excel |
-| 6 | `generate_meeting_minutes` | 生成Markdown格式会议纪要 |
-| 7 | `create_work_schedule` | 生成一周排班表 |
-| 8 | `file_organizer` | 按扩展名自动分类整理文件 |
-| 9 | `text_replacer` | 批量文本替换（正则支持） |
-| 10 | `password_generator` | 随机密码生成器（强度评估） |
+| # | 函数名 | 算法原理 | 复杂度 |
+|---|--------|----------|--------|
+| 1 | `smart_file_classifier` | TF-IDF向量空间模型 + 余弦相似度 + K-Means++聚类 | O(n^2 * m) |
+| 2 | `pdf_structure_analyzer` | PDF二进制解析 + zlib解压 + 正则提取 | O(n) |
+| 3 | `document_similarity_compare` | Jaccard + TF-IDF余弦 + Levenshtein编辑距离 | O(n*m + \|s1\|*\|s2\|) |
+| 4 | `batch_rename_with_pattern` | 正则匹配 + 序号填充 + 日期格式化 + 变量替换 | O(n) |
+| 5 | `excel_data_merger` | XLSX解析 + LEFT/RIGHT/OUTER/INNER JOIN | O(n+m) |
+| 6 | `meeting_minutes_parser` | 正则引擎 + 规则引擎 + NLP提取 | O(n) |
+| 7 | `schedule_conflict_detector` | AVL平衡区间树 + 区间重叠检测 | O(n log n + k) |
+| 8 | `text_diff_analyzer` | Myers差异算法（LCS动态规划） | O(n*m) |
+| 9 | `file_duplicate_finder` | MD5哈希 + 文件大小过滤 + 文件名相似度 | O(n) + O(n^2) |
+| 10 | `document_summary_generator` | TextRank图排序（PageRank迭代） | O(n^2 * T) |
 
 ## 安装
 
-```bash
-pip install openpyxl PyPDF2 python-docx
-```
+无需安装额外依赖，仅使用Python标准库（hashlib, re, os, json, collections, math, difflib, zipfile, zlib等）。
 
 ## 使用示例
 
 ```python
-from main import password_generator, generate_meeting_minutes
+from main import smart_file_classifier, document_similarity_compare, text_diff_analyzer
 
-# 生成密码
-result = password_generator(length=16)
-print(result["password"])
+# TF-IDF智能文件分类
+result = smart_file_classifier("/path/to/files")
+print(result["clusters"])
 
-# 生成会议纪要
-minutes = generate_meeting_minutes(
-    title="项目周会",
-    attendees=["张三", "李四"],
-    agenda=["项目进度汇报", "下周计划"],
-    decisions["项目按计划推进"],
-    action_items=[{"task": "完成模块A", "owner": "张三", "deadline": "2025-01-15"}]
-)
-print(minutes)
+# 三重算法文档相似度对比
+sim = document_similarity_compare("doc1.txt", "doc2.txt")
+print(f"Jaccard: {sim['jaccard']:.3f}, Cosine: {sim['cosine']:.3f}")
+
+# Myers文本差异
+diff = text_diff_analyzer("text1.txt", "text2.txt")
+for line in diff["diff"]:
+    print(f"{line['type']}: {line['content']}")
 ```
 
 ## 依赖
 
-- `openpyxl`: Excel文件读写
-- `PyPDF2`: PDF文件操作
-- `python-docx`: Word文档操作
+无外部依赖（仅使用Python标准库）
 
 ## License
 
