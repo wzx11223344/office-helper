@@ -1,4 +1,6 @@
 # office-helper
+[![CI](https://github.com/wzx11223344/office-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/wzx11223344/office-helper/actions/workflows/ci.yml)
+
 
 办公效率工具箱 - 10个高级算法驱动的办公自动化工具集
 

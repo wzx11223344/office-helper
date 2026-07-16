@@ -1,3 +1,6 @@
 openpyxl
 PyPDF2
 python-docx
+
+pytest>=7.0
+flake8>=6.0
